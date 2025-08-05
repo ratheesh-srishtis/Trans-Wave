@@ -10,10 +10,28 @@ import {
   Grid,
   Button,
 } from "@mui/material";
-import BerthReport from "./Templates/BerthReport";
-import CrewChangeList from "./Templates/CrewChangeList";
-import LoadingReport from "./Templates/LoadingReport";
-import OKTBReport from "./Templates/OKTBReport";
+import AN_SHUN_Inward_Letterhead from "../../TransWave-Templates/AN_SHUN_Inward_Letterhead";
+import Crane_Tally from "../../TransWave-Templates/Crane_Tally";
+import Fresh_Water_Slip from "../../TransWave-Templates/Fresh_Water_Slip";
+import Hamriyah_Inward_Document_Entry from "../../TransWave-Templates/Hamriyah_Inward_Document_Entry";
+import Immigration_Guarantee_Letter_Dubai_New_Drydock from "../../TransWave-Templates/Immigration_Guarantee_Letter_Dubai_New_Drydock";
+import Immigration_Letter_Crew_Change from "../../TransWave-Templates/Immigration_Letter_Crew_Change";
+import Mashreq_AED_IBAN_Letter from "../../TransWave-Templates/Mashreq_AED_IBAN_Letter";
+import Mashreq_USD_IBAN_Letter from "../../TransWave-Templates/Mashreq_USD_IBAN_Letter";
+import Master_Agent_Declaration from "../../TransWave-Templates/Master_Agent_Declaration";
+import New_Delivery_Note_Transwave from "../../TransWave-Templates/New_Delivery_Note_Transwave";
+import New_OKTB_and_Log from "../../TransWave-Templates/New_OKTB_and_Log";
+import NOC_Gatepass from "../../TransWave-Templates/NOC_Gatepass";
+import NOC_Crew_Change_Our_Company from "../../TransWave-Templates/NOC_Crew_Change_Our_Company";
+import NOC_Crew_Change from "../../TransWave-Templates/NOC_Crew_Change";
+import Offshore from "../../TransWave-Templates/Offshore";
+import On_Signers_Attestation from "../../TransWave-Templates/On_Signers_Attestation";
+import Outward_Clearance_Letter_Clean from "../../TransWave-Templates/Outward_Clearance_Letter_Clean";
+import Proforma_Invoice from "../../TransWave-Templates/Proforma_Invoice";
+import QQ_Form from "../../TransWave-Templates/QQ_Form";
+import Sanitation_Renewal_Request_Letter from "../../TransWave-Templates/Sanitation_Renewal_Request_Letter";
+import Transportation_Slip from "../../TransWave-Templates/Transportation_Slip";
+import TWMS_Letterhead_New from "../../TransWave-Templates/TWMS_Letterhead_New";
 import Multiselect from "multiselect-react-dropdown";
 
 import {
@@ -49,81 +67,55 @@ const AddJobs = ({
   const [allVendors, setAllVendors] = useState([]);
 
   const templates = [
+    { _id: "temp001", templateName: "AN SHUN Inward Letterhead" },
+    { _id: "temp002", templateName: "Crane Tally" },
+    { _id: "temp003", templateName: "Fresh Water Slip" },
+    { _id: "temp004", templateName: "Hamriyah Inward Document Entry" },
     {
-      _id: "6745cbea3b3ccd845065a96c",
-      templateName: "Berthing Report",
+      _id: "temp005",
+      templateName: "Immigration Guarantee Letter - Dubai New - Drydock",
     },
-    {
-      _id: "6745cbc83b3ccd845065a922",
-      templateName: "Crew Change List",
-    },
-    {
-      _id: "6745cbdd3b3ccd845065a955",
-      templateName: "Loading Report",
-    },
-    {
-      _id: "6745c91e3b3ccd845065a12b",
-      templateName: "OKTB",
-    },
-    {
-      _id: "675182753b3ccd8450734a09",
-      templateName: "Provision Delivery Notes",
-    },
-    {
-      _id: "675182483b3ccd84507349d7",
-      templateName: "Transportation Receipt",
-    },
-    {
-      _id: "6846bd0ed925a0d41c0d33e3",
-      templateName: "Discharge Report",
-    },
+    { _id: "temp006", templateName: "Immigration Letter Crew Change" },
+    { _id: "temp007", templateName: "Mashreq AED IBAN Letter" },
+    { _id: "temp008", templateName: "Mashreq USD IBAN Letter" },
+    { _id: "temp009", templateName: "Master Agent Declaration" },
+    { _id: "temp010", templateName: "New Delivery Note - Transwave" },
+    { _id: "temp011", templateName: "New OKTB and Log" },
+    { _id: "temp012", templateName: "NOC Gatepass" },
+    { _id: "temp013", templateName: "NOC Crew Change (Our Company)" },
+    { _id: "temp014", templateName: "NOC Crew Change" },
+    { _id: "temp015", templateName: "Offshore" },
+    { _id: "temp016", templateName: "On Signers Attestation" },
+    { _id: "temp017", templateName: "Outward Clearance Letter - Clean" },
+    { _id: "temp018", templateName: "Proforma Invoice" },
+    { _id: "temp019", templateName: "QQ Form" },
+    { _id: "temp020", templateName: "Sanitation Renewal Request Letter" },
+    { _id: "temp021", templateName: "Transportation Slip" },
+    { _id: "temp022", templateName: "TWMS Letterhead - New" },
   ];
 
   const [editChargeData, setEditChargeData] = useState(null);
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [selectedTemplateName, setSelectedTemplateName] = useState("");
-  const [isBerthReportOpen, setIsBerthReportOpen] = useState(false);
-  const [isCrewChangeListOpen, setIsCrewChangeListOpen] = useState(false);
-  const [isLoadingReportOpen, setIsLoadingReportOpen] = useState(false);
-  const [isOKTBOpen, setIsOKTBOpen] = useState(false);
-  const [isProvisionOpen, setIsProvisionOpen] = useState(false);
-  const [isTransportationOpen, setIsTransportationOpen] = useState(false);
-  const [isDischargeReportOpen, setIsDischargeReportOpen] = useState(false);
+  // Dialog open states for each template
+  const [openTemplateDialog, setOpenTemplateDialog] = useState("");
 
   const [templatesList, setTemplatesList] = useState([]);
 
-  const [isBerthReportEdit, setIsBerthReportEdit] = useState(false);
-  const [isCrewChangeListEdit, setIsCrewChangeListEdit] = useState(false);
-  const [isLoadingReportEdit, setIsLoadingReportEdit] = useState(false);
-  const [isOKTBEdit, setIsOKTBEdit] = useState(false);
-  const [isProvisionEdit, setIsProvisionEdit] = useState(false);
-  const [isTransportationEdit, setIsTransportationEdit] = useState(false);
-  const [isDischargeReportEdit, setIsDischargeReportEdit] = useState(false);
+  // Removed unused setIs*Open state setters and edit states for new template dialogs
 
   const handleTemplateChange = (event) => {
     const selectedId = event.target.value; // Get the selected _id
     setSelectedTemplate(selectedId); // Set the selected _id in the state
-
     // Find the corresponding templateName
     const selectedTemplate = templates.find(
       (template) => template._id === selectedId
     );
     if (selectedTemplate) {
-      const templateName =
-        selectedTemplate.templateName === "Delivery Note"
-          ? "Provision Delivery Notes"
-          : selectedTemplate.templateName;
-
-      setSelectedTemplateName(templateName);
+      setSelectedTemplateName(selectedTemplate.templateName);
     } else {
       setSelectedTemplateName("");
     }
-
-    console.log(
-      selectedId,
-      selectedTemplate?.templateName,
-      "handleTemplateChange"
-    );
   };
 
   useEffect(() => {
@@ -137,216 +129,18 @@ const AddJobs = ({
     console.log(allVendors, "allVendors");
   }, [allVendors]);
 
+  // Open the dialog for the selected template
   const handleOpenTemplate = () => {
-    if (selectedTemplate === "6745cbea3b3ccd845065a96c") {
-      setIsBerthReportOpen(true);
-      setIsBerthReportEdit(false);
-    } else if (selectedTemplate === "6745cbc83b3ccd845065a922") {
-      setIsCrewChangeListOpen(true);
-      setIsCrewChangeListEdit(false);
-    } else if (selectedTemplate === "6745cbdd3b3ccd845065a955") {
-      setIsLoadingReportOpen(true);
-      setIsLoadingReportEdit(false);
-    } else if (selectedTemplate === "6745c91e3b3ccd845065a12b") {
-      setIsOKTBOpen(true);
-      setIsOKTBEdit(false);
-    } else if (selectedTemplate === "675182753b3ccd8450734a09") {
-      setIsProvisionOpen(true);
-      setIsProvisionEdit(false);
-    } else if (selectedTemplate === "675182483b3ccd84507349d7") {
-      setIsTransportationOpen(true);
-      setIsTransportationEdit(false);
-    } else if (selectedTemplate === "6846bd0ed925a0d41c0d33e3") {
-      setIsDischargeReportOpen(true);
-      setIsDischargeReportEdit(false);
-    }
+    setOpenTemplateDialog(selectedTemplate);
   };
 
+  // Close all dialogs
   const handleCloseAllDialogs = () => {
-    setIsBerthReportOpen(false);
-    setIsCrewChangeListOpen(false);
-    setIsLoadingReportOpen(false);
-    setIsOKTBOpen(false);
-    setIsProvisionOpen(false);
-    setIsTransportationOpen(false);
-    setIsDischargeReportOpen(false);
+    setOpenTemplateDialog("");
     setSelectedTemplate("");
   };
 
-  const handleOKTBReportSubmit = (response) => {
-    console.log("template_Submitted:", response);
-    if (response?.status == true) {
-      setSelectedTemplate("");
-      if (isOKTBEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      setIsOKTBOpen(false);
-
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
-  const handleBerthReportSubmit = (response) => {
-    console.log("template_Submitted:", response);
-    if (response?.status == true) {
-      setSelectedTemplate("");
-      if (isBerthReportEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      setIsBerthReportOpen(false);
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
-  const handleCrewSubmit = (response) => {
-    console.log("template_Submitted:", response);
-    if (response?.status == true) {
-      setSelectedTemplate("");
-      if (isCrewChangeListEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      setIsCrewChangeListOpen(false);
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
-  const handleLoadingReportSubmit = (response) => {
-    console.log("template_Submitted:", response);
-    if (response?.status == true) {
-      setSelectedTemplate("");
-
-      if (isLoadingReportEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      setIsLoadingReportOpen(false);
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
-
-  const handleProvisionSubmit = (response) => {
-    console.log("template_Submitted:", response);
-    if (response?.status == true) {
-      setSelectedTemplate("");
-
-      if (isProvisionEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      setIsProvisionOpen(false);
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
-  const handleTransportationSubmit = (response) => {
-    if (response?.status == true) {
-      setSelectedTemplate("");
-
-      if (isTransportationEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      console.log("template_Submitted:", response);
-      setIsTransportationOpen(false);
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
-  const handleDischargeReportSubmit = (response) => {
-    if (response?.status == true) {
-      setSelectedTemplate("");
-
-      if (isDischargeReportEdit == true) {
-        setMessage("Template has been updated successfully");
-      } else {
-        setMessage("Template has been saved successfully");
-      }
-      setOpenPopUp(true);
-      console.log("template_Submitted:", response);
-      setIsDischargeReportOpen(false);
-      setTemplatesList((previousTemplates) => {
-        const existingIndex = previousTemplates.findIndex(
-          (template) => template.templateId === response.templateId
-        );
-        if (existingIndex !== -1) {
-          const updatedTemplates = [...previousTemplates];
-          updatedTemplates[existingIndex] = response;
-          return updatedTemplates;
-        }
-        return [...previousTemplates, response];
-      });
-    }
-  };
+  // All old handle*Submit and setIs*Open/setIs*Edit logic removed for new template dialogs
 
   const [selectedStatus, setSelectedStatus] = useState(null);
   const [selectedServiceError, setSelectedServiceError] = useState(false);
@@ -685,32 +479,11 @@ const AddJobs = ({
     window.open(`${BASE_URL}${template?.pdfPath}`, "_blank");
   };
 
+  // Edit handler for new templates (opens dialog for selected template)
   const handleEdit = (template) => {
-    console.log(template, "template_handleEdit");
-    setSelectedTemplate(template?.templateId); // Set the selected _id in the state
+    setSelectedTemplate(template?.templateId);
     setSelectedTemplateName(template?.templateName);
-    if (template?.templateId === "6745cbea3b3ccd845065a96c") {
-      setIsBerthReportOpen(true);
-      setIsBerthReportEdit(true);
-    } else if (template?.templateId === "6745cbc83b3ccd845065a922") {
-      setIsCrewChangeListOpen(true);
-      setIsCrewChangeListEdit(true);
-    } else if (template?.templateId === "6745cbdd3b3ccd845065a955") {
-      setIsLoadingReportOpen(true);
-      setIsLoadingReportEdit(true);
-    } else if (template?.templateId === "6745c91e3b3ccd845065a12b") {
-      setIsOKTBOpen(true);
-      setIsOKTBEdit(true);
-    } else if (template?.templateId === "675182753b3ccd8450734a09") {
-      setIsProvisionOpen(true);
-      setIsProvisionEdit(true);
-    } else if (template?.templateId === "675182483b3ccd84507349d7") {
-      setIsTransportationOpen(true);
-      setIsTransportationEdit(true);
-    } else if (template?.templateId === "6846bd0ed925a0d41c0d33e3") {
-      setIsDischargeReportOpen(true);
-      setIsDischargeReportEdit(true);
-    }
+    setOpenTemplateDialog(template?.templateId);
   };
 
   const handleTemplateFileDelete = async (fileUrl, index) => {
@@ -1084,12 +857,7 @@ const AddJobs = ({
                         <option value="">Choose Template</option>
                         {templates.map((template) => (
                           <option key={template._id} value={template._id}>
-                            {template?.templateName ===
-                            "Provision Delivery Notes"
-                              ? "Delivery Note"
-                              : template?.templateName === "Berthing Report"
-                              ? "Statement Of Facts"
-                              : template?.templateName}
+                            {template?.templateName}
                           </option>
                         ))}
                       </select>
@@ -1254,96 +1022,225 @@ const AddJobs = ({
           </DialogContent>
         </Dialog>
       </div>
-      {/* Dialog Components */}
-      {isBerthReportOpen && (
-        <BerthReport
-          open={isBerthReportOpen}
+      {/* Dialog Components for all 22 templates */}
+      {openTemplateDialog === "temp001" && (
+        <AN_SHUN_Inward_Letterhead
+          open={true}
           onClose={handleCloseAllDialogs}
           charge={charge}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
           pdaResponse={pdaResponse}
-          onSubmit={handleBerthReportSubmit}
-          isEdit={isBerthReportEdit}
         />
       )}
-      {isCrewChangeListOpen && (
-        <CrewChangeList
-          open={isCrewChangeListOpen}
+      {openTemplateDialog === "temp002" && (
+        <Crane_Tally
+          open={true}
           onClose={handleCloseAllDialogs}
           charge={charge}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
-          onSubmit={handleCrewSubmit}
           pdaResponse={pdaResponse}
-          isEdit={isCrewChangeListEdit}
         />
       )}
-      {isLoadingReportOpen && (
-        <LoadingReport
-          open={isLoadingReportOpen}
+      {openTemplateDialog === "temp003" && (
+        <Fresh_Water_Slip
+          open={true}
           onClose={handleCloseAllDialogs}
           charge={charge}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
-          onSubmit={handleLoadingReportSubmit}
           pdaResponse={pdaResponse}
-          isEdit={isLoadingReportEdit}
         />
       )}
-      {isOKTBOpen && (
-        <OKTBReport
-          open={isOKTBOpen}
+      {openTemplateDialog === "temp004" && (
+        <Hamriyah_Inward_Document_Entry
+          open={true}
           onClose={handleCloseAllDialogs}
           charge={charge}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
-          onSubmit={handleOKTBReportSubmit}
           pdaResponse={pdaResponse}
-          isEdit={isOKTBEdit}
-          opsPhoneNumber={opsPhoneNumber}
         />
       )}
-      {isProvisionOpen && (
-        <ProvisionDeliveryNotes
-          open={isProvisionOpen}
+      {openTemplateDialog === "temp005" && (
+        <Immigration_Guarantee_Letter_Dubai_New_Drydock
+          open={true}
           onClose={handleCloseAllDialogs}
           charge={charge}
-          onSubmit={handleProvisionSubmit}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
           pdaResponse={pdaResponse}
-          isEdit={isProvisionEdit}
         />
       )}
-      {isTransportationOpen && (
-        <Transportationreciept
-          open={isTransportationOpen}
+      {openTemplateDialog === "temp006" && (
+        <Immigration_Letter_Crew_Change
+          open={true}
           onClose={handleCloseAllDialogs}
+          charge={charge}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
-          charge={charge}
-          onSubmit={handleTransportationSubmit}
-          selectedChargesType={selectedChargesType}
-          selectedService={selectedService}
-          services={services}
           pdaResponse={pdaResponse}
-          isEdit={isTransportationEdit}
         />
       )}
-      {isDischargeReportOpen && (
-        <DischargeReport
-          open={isDischargeReportOpen}
+      {openTemplateDialog === "temp007" && (
+        <Mashreq_AED_IBAN_Letter
+          open={true}
           onClose={handleCloseAllDialogs}
+          charge={charge}
           selectedTemplateName={selectedTemplateName}
           selectedTemplate={selectedTemplate}
-          charge={charge}
-          onSubmit={handleDischargeReportSubmit}
-          selectedChargesType={selectedChargesType}
-          selectedService={selectedService}
-          services={services}
           pdaResponse={pdaResponse}
-          isEdit={isDischargeReportEdit}
+        />
+      )}
+      {openTemplateDialog === "temp008" && (
+        <Mashreq_USD_IBAN_Letter
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp009" && (
+        <Master_Agent_Declaration
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp010" && (
+        <New_Delivery_Note_Transwave
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp011" && (
+        <New_OKTB_and_Log
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp012" && (
+        <NOC_Gatepass
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp013" && (
+        <NOC_Crew_Change_Our_Company
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp014" && (
+        <NOC_Crew_Change
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp015" && (
+        <Offshore
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp016" && (
+        <On_Signers_Attestation
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp017" && (
+        <Outward_Clearance_Letter_Clean
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp018" && (
+        <Proforma_Invoice
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp019" && (
+        <QQ_Form
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp020" && (
+        <Sanitation_Renewal_Request_Letter
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp021" && (
+        <Transportation_Slip
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
+        />
+      )}
+      {openTemplateDialog === "temp022" && (
+        <TWMS_Letterhead_New
+          open={true}
+          onClose={handleCloseAllDialogs}
+          charge={charge}
+          selectedTemplateName={selectedTemplateName}
+          selectedTemplate={selectedTemplate}
+          pdaResponse={pdaResponse}
         />
       )}
       {openPopUp && (
