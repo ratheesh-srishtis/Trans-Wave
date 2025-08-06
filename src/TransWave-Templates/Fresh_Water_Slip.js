@@ -217,23 +217,7 @@ const FreshWaterSlip = ({
               </div>
             </div>
           </div>
-          <div className="d-flex twoktbpassangerdetails mt-3 mb-3">
-            <div>
-              Tender Along Side:
-            </div>
-            <div class="form-check mx-3">
-              <input class="form-check-input" type="checkbox" value="" id="checkDefault"></input>
-                <label class="form-check-label" for="checkDefault">
-                  Started
-                </label>
-            </div>
-                        <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="checkDefault"></input>
-                <label class="form-check-label" for="checkDefault">
-                  Completed
-                </label>
-            </div>
-          </div>
+
 
 
 
