@@ -16,8 +16,15 @@ const SanitationRenewalRequestLetter = ({
   selectedTemplate,
   pdaResponse,
 }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>Sanitation Renewal Request Letter</DialogTitle>
       <DialogContent>
         <div className="sanitation-renewal-request-letter">

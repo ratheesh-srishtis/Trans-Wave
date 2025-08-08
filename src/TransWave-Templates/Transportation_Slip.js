@@ -16,8 +16,15 @@ const TransportationSlip = ({
   selectedTemplate,
   pdaResponse,
 }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>Transportation Slip</DialogTitle>
       <DialogContent>
         <div className="transportation-slip">
