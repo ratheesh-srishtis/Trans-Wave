@@ -132,6 +132,7 @@ const NOCGatepass = ({
       >
         {" "}
         <DialogTitle></DialogTitle>
+
         <div className="closeicon">
           <i className="bi bi-x-lg "></i>
         </div>
