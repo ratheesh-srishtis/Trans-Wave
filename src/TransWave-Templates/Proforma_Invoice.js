@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 
-const Proforma_Invoice = ({
+const ProformaInvoice = ({
   open,
   onClose,
   charge,
@@ -16,8 +16,15 @@ const Proforma_Invoice = ({
   selectedTemplate,
   pdaResponse,
 }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>Proforma Invoice</DialogTitle>
       <DialogContent>
         <div className="proforma-invoice">
@@ -25,10 +32,10 @@ const Proforma_Invoice = ({
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={() => onClose()}>Close</Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default Proforma_Invoice;
+export default ProformaInvoice;

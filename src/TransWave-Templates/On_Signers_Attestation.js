@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 
-const On_Signers_Attestation = ({
+const OnSignersAttestation = ({
   open,
   onClose,
   charge,
@@ -16,8 +16,15 @@ const On_Signers_Attestation = ({
   selectedTemplate,
   pdaResponse,
 }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>On Signers Attestation</DialogTitle>
       <DialogContent>
         <div className="on-signers-attestation">
@@ -25,10 +32,10 @@ const On_Signers_Attestation = ({
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={() => onClose()}>Close</Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default On_Signers_Attestation;
+export default OnSignersAttestation;
