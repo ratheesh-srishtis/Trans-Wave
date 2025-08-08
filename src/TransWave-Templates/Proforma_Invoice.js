@@ -168,7 +168,7 @@ const ProformaInvoice = ({
           </div>
           <div className="cont row d-flex justify-content-between mt-3 ">
             <div className="col-3 queheading">
-              <div> Purpose:</div>
+              <div> HS Code:</div>
               <input
                 type="number"
                 className="form-control answidth crewfontt"
@@ -177,7 +177,7 @@ const ProformaInvoice = ({
               <div className="invalid"></div>
             </div>
             <div className="col-5 queheading">
-              <div> Sharjah Port Registration Card No.:</div>
+              <div> Weight:</div>
               <input
                 type="text"
                 className="form-control answidth crewfontt"
@@ -187,7 +187,7 @@ const ProformaInvoice = ({
               <div className="invalid"></div>
             </div>
             <div className="col-4 queheading">
-              <div> Company Name:</div>
+              <div> Country of origin :</div>
               <input
                 type="text"
                 className="form-control answidth crewfontt"
@@ -199,14 +199,9 @@ const ProformaInvoice = ({
           </div>
 
           <div className="mt-3 mb-3">
-            <strong>Thank you and looking forward for your best co-operation.</strong>
-            <p className="mb-0">
-              Sincerely yours,
-            </p>
+            
             <p className="mb-0 mt-0">
-              For TRANS WAVE MARINE SHIPPING SERVICES LLC SHJ BR
-              AS AGENT
-
+              For 
             </p>
           </div>
 
