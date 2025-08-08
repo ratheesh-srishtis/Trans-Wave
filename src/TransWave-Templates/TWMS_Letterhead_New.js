@@ -8,7 +8,7 @@ import {
   Button,
 } from "@mui/material";
 
-const TWMS_Letterhead_New = ({
+const TWMSLetterheadNew = ({
   open,
   onClose,
   charge,
@@ -16,8 +16,15 @@ const TWMS_Letterhead_New = ({
   selectedTemplate,
   pdaResponse,
 }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
+
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>TWMS Letterhead - New</DialogTitle>
       <DialogContent>
         <div className="twms-letterhead-new">
@@ -25,10 +32,10 @@ const TWMS_Letterhead_New = ({
         </div>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>Close</Button>
+        <Button onClick={() => onClose()}>Close</Button>
       </DialogActions>
     </Dialog>
   );
 };
 
-export default TWMS_Letterhead_New;
+export default TWMSLetterheadNew;

@@ -16,13 +16,16 @@ const CraneTally = ({
   selectedTemplate,
   pdaResponse,
 }) => {
-  return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
-      <div className="d-flex justify-content-between " onClick={onClose}>      <DialogTitle></DialogTitle>
-        <div className="closeicon">
-          <i className="bi bi-x-lg "></i>
-        </div></div>
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
 
+  return (
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+      <DialogTitle>Crane Tally</DialogTitle>
       <DialogContent>
         <div className="mainoktb ">
           <div className=" d-flex justify-content-center">
