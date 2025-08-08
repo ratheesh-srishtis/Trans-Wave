@@ -16,8 +16,14 @@ const NOC_Crew_Change = ({
   selectedTemplate,
   pdaResponse,
 }) => {
+  const handleClose = (event, reason) => {
+    if (reason === "backdropClick") {
+      return; // Prevent closing on backdrop click
+    }
+    onClose(event, reason);
+  };
   return (
-    <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
       <DialogTitle>NOC Crew Change</DialogTitle>
       <DialogContent>
         <div className="noc-crew-change">
