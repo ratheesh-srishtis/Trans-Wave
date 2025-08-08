@@ -18,7 +18,7 @@ const NOCGatepass = ({
 }) => {
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
-      <div className="d-flex justify-content-between " onClick={onClose}>      <DialogTitle>New OKTB and Log</DialogTitle>
+      <div className="d-flex justify-content-between " onClick={onClose}>      <DialogTitle></DialogTitle>
         <div className="closeicon">
           <i className="bi bi-x-lg "></i>
         </div></div>
