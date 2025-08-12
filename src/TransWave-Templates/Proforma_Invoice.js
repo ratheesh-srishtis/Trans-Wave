@@ -25,8 +25,17 @@ const ProformaInvoice = ({
 
   return (
     <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
-      <DialogTitle>Proforma Invoice</DialogTitle>
-
+            <div
+              className="d-flex justify-content-between "
+              onClick={() => onClose()}
+            >
+              {" "}
+              <DialogTitle></DialogTitle>
+      
+              <div className="closeicon">
+                <i className="bi bi-x-lg "></i>
+              </div>
+            </div>
       <DialogContent>
         <div className="mainoktb ">
           <div className=" d-flex justify-content-center">
